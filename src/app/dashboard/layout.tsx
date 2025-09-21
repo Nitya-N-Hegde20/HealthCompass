@@ -44,7 +44,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
             </SidebarFooter>
           </div>
         </Sidebar>
-        <main className="flex-1 p-4 md:p-6 lg:p-8 bg-secondary/50">
+        <main className="flex-1 p-4 md:p-6 lg:p-8 bg-gradient-to-br from-secondary/30 to-background">
           {children}
         </main>
       </div>

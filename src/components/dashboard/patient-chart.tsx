@@ -18,11 +18,11 @@ const chartConfig = {
   },
   cardiologist: {
     label: 'Cardiologist',
-    color: 'hsl(var(--chart-1))',
+    color: 'hsl(var(--primary))',
   },
   neurologist: {
     label: 'Neurologist',
-    color: 'hsl(var(--chart-2))',
+    color: 'hsl(var(--accent))',
   },
   dermatologist: {
     label: 'Dermatologist',
