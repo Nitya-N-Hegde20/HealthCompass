@@ -4,7 +4,7 @@ import { useActionState, useEffect } from 'react';
 import { useFormStatus } from 'react-dom';
 import { login } from '@/lib/actions';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
@@ -43,9 +43,9 @@ export default function LoginPage() {
         className="object-cover"
         data-ai-hint="doctor technology"
       />
-      <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-black/50" />
       <div className="relative z-10 w-full max-w-sm">
-        <Card className="bg-background/80 backdrop-blur-md shadow-2xl border-0">
+        <Card className="bg-background/80 backdrop-blur-md shadow-2xl border-0 animate-in fade-in-0 zoom-in-95 duration-500">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">Admin Login</CardTitle>
           </CardHeader>

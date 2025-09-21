@@ -52,9 +52,9 @@ export default function RegisterPage() {
         className="object-cover"
         data-ai-hint="doctor technology"
       />
-      <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-black/50" />
       <div className="relative z-10 w-full max-w-2xl">
-        <Card className="bg-background/90 backdrop-blur-md">
+        <Card className="bg-background/80 backdrop-blur-md shadow-2xl border-0 animate-in fade-in-0 zoom-in-95 duration-500">
           <CardHeader>
             <CardTitle className="text-3xl">Get Started</CardTitle>
             <CardDescription>Create your HealthCompass account to get personalized help.</CardDescription>
