@@ -9,13 +9,14 @@ export function Hero() {
       className="relative w-full h-[80vh] min-h-[500px] flex items-center justify-center text-center text-white"
     >
       <Image
-        src="/images.jpeg"
-        alt="Background image of a hospital management system"
+        src="https://picsum.photos/seed/health-hero/1920/1080"
+        alt="A medical professional using a tablet"
         fill
-        className="object-cover -z-10"
+        className="object-cover"
+        data-ai-hint="medical technology"
       />
-      <div className="absolute inset-0 bg-black/60 -z-10" />
-      <div className="container px-4 md:px-6 flex flex-col items-center">
+      <div className="absolute inset-0 bg-black/60" />
+      <div className="container relative z-10 px-4 md:px-6 flex flex-col items-center">
         <div className="max-w-3xl space-y-6">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
             Navigate Your Health with Confidence
