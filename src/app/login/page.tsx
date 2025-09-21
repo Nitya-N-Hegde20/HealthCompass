@@ -4,7 +4,7 @@ import { useActionState, useEffect } from 'react';
 import { useFormStatus } from 'react-dom';
 import { login } from '@/lib/actions';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
@@ -37,11 +37,11 @@ export default function LoginPage() {
   return (
      <div className="relative flex items-center justify-center min-h-[calc(100vh-4rem)] p-4">
       <Image
-        src="https://picsum.photos/seed/healthcare-professional/1920/1080"
-        alt="Abstract background with clinical and technology icons"
+        src="https://picsum.photos/seed/light-blue-abstract/1920/1080"
+        alt="Abstract light blue background"
         fill
         className="object-cover"
-        data-ai-hint="medical professional"
+        data-ai-hint="light blue"
       />
       <div className="absolute inset-0 bg-primary/10" />
       <div className="relative z-10 w-full max-w-sm">
