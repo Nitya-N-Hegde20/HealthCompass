@@ -1,6 +1,5 @@
 import { getSession } from '@/lib/auth';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Label } from '@/components/ui/label';
 import { User } from 'lucide-react';
 
@@ -17,10 +16,10 @@ export default async function ProfilePage() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="flex flex-col h-full space-y-8">
       <h1 className="text-3xl font-bold">Admin Profile</h1>
       
-      <Card className="overflow-hidden">
+      <Card className="overflow-hidden flex-1 flex flex-col">
         <CardHeader className="bg-muted/30">
           <div className="flex items-center gap-4">
              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
@@ -32,7 +31,7 @@ export default async function ProfilePage() {
             </div>
           </div>
         </CardHeader>
-        <CardContent className="p-6">
+        <CardContent className="p-6 flex-1">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
             <div className="space-y-1">
               <Label className="text-muted-foreground">Email Address</Label>
