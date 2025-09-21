@@ -43,7 +43,7 @@ export default function RegisterPage() {
   }, [state, toast]);
 
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] bg-gradient-to-br from-secondary/30 via-background to-background py-12 px-4">
+    <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] bg-gradient-to-br from-primary/20 via-accent/10 to-background py-12 px-4">
       <Card className="w-full max-w-2xl">
         <CardHeader>
           <CardTitle className="text-3xl">Get Started</CardTitle>
