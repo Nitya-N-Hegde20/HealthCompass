@@ -14,7 +14,7 @@ import Image from 'next/image';
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <Button type="submit" className="w-full" disabled={pending}>
+    <Button type="submit" className="w-full bg-primary/80 hover:bg-primary text-primary-foreground" disabled={pending}>
       {pending ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Logging in...</> : 'Login'}
     </Button>
   );
@@ -43,22 +43,22 @@ export default function LoginPage() {
         className="object-cover"
         data-ai-hint="abstract medical"
       />
-      <div className="absolute inset-0 bg-primary/80" />
+      <div className="absolute inset-0 bg-primary/10" />
       <div className="relative z-10 w-full max-w-sm">
-        <Card>
+        <Card className="bg-card/60 backdrop-blur-lg border-white/20 text-card-foreground shadow-2xl">
           <CardHeader>
             <CardTitle className="text-2xl">Admin Login</CardTitle>
-            <CardDescription>Enter your credentials to access the dashboard.</CardDescription>
+            <CardDescription className="text-foreground/80">Enter your credentials to access the dashboard.</CardDescription>
           </CardHeader>
           <CardContent>
             <form action={formAction} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="username">Username</Label>
-                <Input id="username" name="username" placeholder="admin" required />
+                <Input id="username" name="username" placeholder="admin" required className="bg-transparent/20 placeholder:text-foreground/60" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
-                <Input id="password" name="password" type="password" placeholder="password" required />
+                <Input id="password" name="password" type="password" placeholder="password" required className="bg-transparent/20 placeholder:text-foreground/60" />
               </div>
               <SubmitButton />
             </form>
