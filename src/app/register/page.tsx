@@ -46,15 +46,15 @@ export default function RegisterPage() {
   return (
     <div className="relative flex items-center justify-center min-h-[calc(100vh-4rem)] py-12 px-4">
        <Image
-        src="https://picsum.photos/seed/health-tech-2/1920/1080"
-        alt="Abstract background"
+        src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop"
+        alt="Doctor using a tablet in a modern medical setting"
         fill
         className="object-cover"
-        data-ai-hint="abstract health"
+        data-ai-hint="doctor technology"
       />
-      <div className="absolute inset-0 bg-primary/80" />
+      <div className="absolute inset-0 bg-black/30" />
       <div className="relative z-10 w-full max-w-2xl">
-        <Card>
+        <Card className="bg-background/90 backdrop-blur-md">
           <CardHeader>
             <CardTitle className="text-3xl">Get Started</CardTitle>
             <CardDescription>Create your HealthCompass account to get personalized help.</CardDescription>
