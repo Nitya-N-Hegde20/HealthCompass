@@ -7,12 +7,12 @@ export function Hero() {
   return (
     <section className="relative w-full h-[80vh] min-h-[500px] flex items-center justify-center text-center">
       <Image
-        src="https://picsum.photos/seed/health1/1920/1080"
-        alt="Doctor listening to a patient"
+        src="https://picsum.photos/seed/medical-team/1920/1080"
+        alt="A team of medical professionals"
         fill
         className="object-cover"
         priority
-        data-ai-hint="doctor patient"
+        data-ai-hint="medical team"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
       <div className="absolute inset-0 bg-black/30" />
@@ -25,7 +25,7 @@ export function Hero() {
             Unsure which doctor to see? HealthCompass analyzes your symptoms and guides you to the right specialist, instantly.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
+            <Button size="lg" asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
               <Link href="/chat">
                 Chat with AI
                 <ArrowRight className="ml-2 h-5 w-5" />

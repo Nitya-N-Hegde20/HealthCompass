@@ -2,15 +2,15 @@
   "placeholderImages": [
     {
       "id": "hero-background",
-      "description": "A calm and reassuring image of a doctor listening to a patient.",
-      "imageUrl": "https://picsum.photos/seed/health1/1920/1080",
-      "imageHint": "doctor patient"
+      "description": "A diverse team of medical professionals looking determined.",
+      "imageUrl": "https://picsum.photos/seed/medical-team/1920/1080",
+      "imageHint": "medical team"
     },
     {
       "id": "about-card-1",
-      "description": "Image representing confusion or uncertainty.",
-      "imageUrl": "https://picsum.photos/seed/health2/600/400",
-      "imageHint": "person thinking"
+      "description": "A doctor and patient in a consultation.",
+      "imageUrl": "https://picsum.photos/seed/doctor-consult/600/400",
+      "imageHint": "doctor consultation"
     },
     {
       "id": "about-card-2",
