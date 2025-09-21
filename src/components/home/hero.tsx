@@ -9,7 +9,7 @@ export function Hero() {
       className="relative w-full h-[80vh] min-h-[500px] flex items-center justify-center text-center text-white"
     >
       <Image
-        src="https://picsum.photos/seed/abstract-medical-art/1920/1080"
+        src="https://picsum.photos/seed/clean-medical-abstract/1920/1080"
         alt="Abstract medical background"
         fill
         priority
