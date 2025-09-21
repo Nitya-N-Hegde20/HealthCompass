@@ -42,7 +42,7 @@ export function Features() {
               <CardContent className="text-center flex-1">
                 <p className="text-muted-foreground">{item.description}</p>
               </CardContent>
-            </card>
+            </Card>
           ))}
         </div>
       </div>
