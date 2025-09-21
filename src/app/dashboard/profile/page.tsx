@@ -27,7 +27,7 @@ export default async function ProfilePage() {
         <CardContent className="space-y-6">
           <div className="flex items-center space-x-6">
             <Avatar className="h-24 w-24">
-              <AvatarImage src="https://picsum.photos/seed/admin/200" alt="Admin avatar" />
+              <AvatarImage src="https://picsum.photos/seed/admin-logo/200" alt="Admin avatar" data-ai-hint="admin logo" />
               <AvatarFallback>{adminDetails.name.charAt(0)}</AvatarFallback>
             </Avatar>
             <div className="space-y-1">
