@@ -16,16 +16,6 @@ export function About() {
               HealthCompass was created to solve this problem. We provide a conversational, accessible, and location-aware solution to guide you from symptom description to finding a trustworthy doctor nearby—all without needing complex apps or technical know-how.
             </p>
           </div>
-          <div className="w-full max-w-4xl">
-             <Image 
-                src="https://picsum.photos/seed/doctor-consult-2/1200/600"
-                width={1200}
-                height={600}
-                alt="A person having a consultation with a doctor"
-                className="rounded-lg object-cover w-full shadow-lg"
-                data-ai-hint="doctor consultation"
-              />
-          </div>
         </div>
       </div>
     </section>
