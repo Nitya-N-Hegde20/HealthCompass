@@ -7,12 +7,11 @@ export function Hero() {
   return (
     <section className="relative w-full h-[80vh] min-h-[500px] flex items-center justify-center text-center">
       <Image
-        src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        src="/images.jpeg"
         alt="A doctor using a tablet in a hospital hallway"
         fill
         className="object-cover"
         priority
-        data-ai-hint="medical professional tablet"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
       <div className="absolute inset-0 bg-black/60" />
