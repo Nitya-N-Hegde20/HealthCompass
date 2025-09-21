@@ -37,11 +37,11 @@ export default function LoginPage() {
   return (
      <div className="relative flex items-center justify-center min-h-[calc(100vh-4rem)] p-4">
       <Image
-        src="https://picsum.photos/seed/clinical-tech/1920/1080"
+        src="https://picsum.photos/seed/healthcare-professional/1920/1080"
         alt="Abstract background with clinical and technology icons"
         fill
         className="object-cover"
-        data-ai-hint="clinical technology"
+        data-ai-hint="medical professional"
       />
       <div className="absolute inset-0 bg-primary/10" />
       <div className="relative z-10 w-full max-w-sm">
