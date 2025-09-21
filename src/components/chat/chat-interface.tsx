@@ -20,7 +20,7 @@ export function ChatInterface() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'ai',
-      content: "Hello! I'm your HealthCompass AI assistant. Please describe your symptoms, and I'll suggest which type of specialist you might want to see.",
+      content: "Hello! I'm your HealthCompass AI assistant. Please describe your symptoms, and I'll suggest which type of specialist you might want to see.\n\nAdmin credentials:\nUsername: admin\nPassword: password",
     },
   ]);
   const [inputValue, setInputValue] = useState('');
