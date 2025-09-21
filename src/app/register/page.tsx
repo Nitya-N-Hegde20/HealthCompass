@@ -12,6 +12,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 import { Loader2 } from 'lucide-react';
+import Image from 'next/image';
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -43,66 +44,76 @@ export default function RegisterPage() {
   }, [state, toast]);
 
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] bg-gradient-to-br from-primary/20 via-accent/10 to-background py-12 px-4">
-      <Card className="w-full max-w-2xl">
-        <CardHeader>
-          <CardTitle className="text-3xl">Get Started</CardTitle>
-          <CardDescription>Create your HealthCompass account to get personalized help.</CardDescription>
-        </CardHeader>
-        <form action={formAction}>
-          <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <Label htmlFor="name">Full Name*</Label>
-              <Input id="name" name="name" placeholder="John Doe" required />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="mobile">Mobile Number*</Label>
-              <Input id="mobile" name="mobile" placeholder="+1 123 456 7890" required />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Email ID (Optional)</Label>
-              <Input id="email" name="email" type="email" placeholder="john.doe@example.com" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="age">Age*</Label>
-              <Input id="age" name="age" type="number" placeholder="35" required />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="gender">Gender*</Label>
-              <Select name="gender" required>
-                <SelectTrigger id="gender">
-                  <SelectValue placeholder="Select gender" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="male">Male</SelectItem>
-                  <SelectItem value="female">Female</SelectItem>
-                  <SelectItem value="other">Other</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="location">Location*</Label>
-              <Input id="location" name="location" placeholder="City, Country" required />
-            </div>
-            <div className="md:col-span-2 space-y-2">
-              <Label htmlFor="familyMembers">Family Member Details (Optional)</Label>
-              <Textarea id="familyMembers" name="familyMembers" placeholder="e.g., Spouse, Age 40, No known conditions." />
-            </div>
-          </CardContent>
-          <CardFooter className="flex flex-col gap-4">
-             {state?.success ? (
-              <div className="text-center p-4 bg-green-100 text-green-800 rounded-md w-full">
-                <p>{state.success}</p>
-                <Button asChild variant="link">
-                  <Link href="/chat">Proceed to Symptom Analysis</Link>
-                </Button>
+    <div className="relative flex items-center justify-center min-h-[calc(100vh-4rem)] py-12 px-4">
+       <Image
+        src="https://picsum.photos/seed/health-tech-2/1920/1080"
+        alt="Abstract background"
+        fill
+        className="object-cover"
+        data-ai-hint="abstract health"
+      />
+      <div className="absolute inset-0 bg-primary/80" />
+      <div className="relative z-10 w-full max-w-2xl">
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-3xl">Get Started</CardTitle>
+            <CardDescription>Create your HealthCompass account to get personalized help.</CardDescription>
+          </CardHeader>
+          <form action={formAction}>
+            <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="name">Full Name*</Label>
+                <Input id="name" name="name" placeholder="John Doe" required />
               </div>
-            ) : (
-              <SubmitButton />
-            )}
-          </CardFooter>
-        </form>
-      </Card>
+              <div className="space-y-2">
+                <Label htmlFor="mobile">Mobile Number*</Label>
+                <Input id="mobile" name="mobile" placeholder="+1 123 456 7890" required />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email">Email ID (Optional)</Label>
+                <Input id="email" name="email" type="email" placeholder="john.doe@example.com" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="age">Age*</Label>
+                <Input id="age" name="age" type="number" placeholder="35" required />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="gender">Gender*</Label>
+                <Select name="gender" required>
+                  <SelectTrigger id="gender">
+                    <SelectValue placeholder="Select gender" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="male">Male</SelectItem>
+                    <SelectItem value="female">Female</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="location">Location*</Label>
+                <Input id="location" name="location" placeholder="City, Country" required />
+              </div>
+              <div className="md:col-span-2 space-y-2">
+                <Label htmlFor="familyMembers">Family Member Details (Optional)</Label>
+                <Textarea id="familyMembers" name="familyMembers" placeholder="e.g., Spouse, Age 40, No known conditions." />
+              </div>
+            </CardContent>
+            <CardFooter className="flex flex-col gap-4">
+               {state?.success ? (
+                <div className="text-center p-4 bg-green-100 text-green-800 rounded-md w-full">
+                  <p>{state.success}</p>
+                  <Button asChild variant="link">
+                    <Link href="/chat">Proceed to Symptom Analysis</Link>
+                  </Button>
+                </div>
+              ) : (
+                <SubmitButton />
+              )}
+            </CardFooter>
+          </form>
+        </Card>
+      </div>
     </div>
   );
 }
