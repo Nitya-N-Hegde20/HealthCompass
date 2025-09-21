@@ -34,7 +34,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
                 </SidebarMenuItem>
                 <SidebarMenuItem>
                   <SidebarMenuButton asChild>
-                    <Link href="#"><User /> Profile</Link>
+                    <Link href="/dashboard/profile"><User /> Profile</Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               </SidebarMenu>
