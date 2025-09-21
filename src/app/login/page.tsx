@@ -37,8 +37,8 @@ export default function LoginPage() {
   return (
      <div className="relative flex items-center justify-center min-h-[calc(100vh-4rem)] p-4">
       <Image
-        src="https://picsum.photos/seed/doctor-tech/1920/1080"
-        alt="Doctor using technology in a modern hospital"
+        src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop"
+        alt="Doctor using a tablet in a modern medical setting"
         fill
         className="object-cover"
         data-ai-hint="doctor technology"
