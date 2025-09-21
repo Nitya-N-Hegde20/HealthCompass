@@ -9,11 +9,12 @@ export function Hero() {
       className="relative w-full h-[80vh] min-h-[500px] flex items-center justify-center text-center text-white"
     >
       <Image
-        src="https://picsum.photos/seed/health-hero/1920/1080"
-        alt="A medical professional using a tablet"
+        src="https://picsum.photos/seed/hospital-future/1920/1080"
+        alt="Creative image of a modern hospital interior"
         fill
+        priority
         className="object-cover"
-        data-ai-hint="medical technology"
+        data-ai-hint="modern hospital"
       />
       <div className="absolute inset-0 bg-black/60" />
       <div className="container relative z-10 px-4 md:px-6 flex flex-col items-center">
