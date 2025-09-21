@@ -37,18 +37,17 @@ export default function LoginPage() {
   return (
      <div className="relative flex items-center justify-center min-h-[calc(100vh-4rem)] p-4">
       <Image
-        src="https://picsum.photos/seed/health-tech/1920/1080"
-        alt="Abstract background"
+        src="https://picsum.photos/seed/clinical-tech/1920/1080"
+        alt="Abstract background with clinical and technology icons"
         fill
         className="object-cover"
-        data-ai-hint="abstract medical"
+        data-ai-hint="clinical technology"
       />
       <div className="absolute inset-0 bg-primary/10" />
       <div className="relative z-10 w-full max-w-sm">
         <Card className="bg-card/60 backdrop-blur-lg border-white/20 text-card-foreground shadow-2xl">
-          <CardHeader>
+          <CardHeader className="text-center">
             <CardTitle className="text-2xl">Admin Login</CardTitle>
-            <CardDescription className="text-foreground/80">Enter your credentials to access the dashboard.</CardDescription>
           </CardHeader>
           <CardContent>
             <form action={formAction} className="space-y-4">
