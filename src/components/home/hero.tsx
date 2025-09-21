@@ -9,7 +9,7 @@ export function Hero() {
       className="relative w-full h-[80vh] min-h-[500px] flex items-center justify-center text-center text-white"
     >
       <Image
-        src="https://picsum.photos/seed/hospital-tech/1920/1080"
+        src="https://picsum.photos/seed/modern-clinic/1920/1080"
         alt="Creative image of a modern hospital interior"
         fill
         priority
