@@ -1,3 +1,46 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-background",
+      "description": "A calm and reassuring image of a doctor listening to a patient.",
+      "imageUrl": "https://picsum.photos/seed/health1/1920/1080",
+      "imageHint": "doctor patient"
+    },
+    {
+      "id": "about-card-1",
+      "description": "Image representing confusion or uncertainty.",
+      "imageUrl": "https://picsum.photos/seed/health2/600/400",
+      "imageHint": "person thinking"
+    },
+    {
+      "id": "about-card-2",
+      "description": "Image representing AI and technology in healthcare.",
+      "imageUrl": "https://picsum.photos/seed/health3/600/400",
+      "imageHint": "AI healthcare"
+    },
+    {
+      "id": "about-card-3",
+      "description": "Image representing finding a doctor or location services.",
+      "imageUrl": "https://picsum.photos/seed/health4/600/400",
+      "imageHint": "map doctor"
+    },
+    {
+      "id": "feature-symptom-analysis",
+      "description": "Icon-like image for AI symptom analysis feature.",
+      "imageUrl": "https://picsum.photos/seed/feature1/200/200",
+      "imageHint": "brain icon"
+    },
+    {
+      "id": "feature-specialist-suggestion",
+      "description": "Icon-like image for specialist suggestion feature.",
+      "imageUrl": "https://picsum.photos/seed/feature2/200/200",
+      "imageHint": "doctor icon"
+    },
+    {
+      "id": "feature-location-aware",
+      "description": "Icon-like image for location-aware doctor finding feature.",
+      "imageUrl": "https://picsum.photos/seed/feature3/200/200",
+      "imageHint": "location pin"
+    }
+  ]
 }
