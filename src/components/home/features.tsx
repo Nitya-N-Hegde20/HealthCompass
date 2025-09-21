@@ -32,7 +32,7 @@ export function Features() {
             </p>
           </div>
         </div>
-        <div className="mx-auto grid max-w-5xl items-center justify-center gap-8 sm:grid-cols-1 md:grid-cols-3 lg:max-w-none lg:grid-cols-3 mt-12">
+        <div className="mx-auto grid max-w-5xl items-start justify-center gap-8 sm:grid-cols-1 md:grid-cols-3 lg:max-w-none lg:grid-cols-3 mt-12">
           {featureData.map((item, index) => (
             <Card key={index} className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl bg-background flex flex-col items-center text-center">
               <CardHeader className="flex flex-col items-center text-center gap-4">
