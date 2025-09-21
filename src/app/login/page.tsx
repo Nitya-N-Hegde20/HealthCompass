@@ -37,11 +37,11 @@ export default function LoginPage() {
   return (
      <div className="relative flex items-center justify-center min-h-[calc(100vh-4rem)] p-4">
       <Image
-        src="https://picsum.photos/seed/light-blue-abstract/1920/1080"
-        alt="Abstract light blue background"
+        src="https://picsum.photos/seed/clinic-reception/1920/1080"
+        alt="A modern and clean hospital reception area."
         fill
         className="object-cover"
-        data-ai-hint="light blue"
+        data-ai-hint="modern clinic"
       />
       <div className="absolute inset-0 bg-primary/10" />
       <div className="relative z-10 w-full max-w-sm">
