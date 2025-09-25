@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { Navbar } from '@/components/layout/navbar';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'HealthCompass Navigator',
@@ -24,6 +25,8 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Toaster />
+        <elevenlabs-convai agent-id="agent_6101k604gey3e8qrh4zzptf0gz02"></elevenlabs-convai>
+        <Script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></Script>
       </body>
     </html>
   );
