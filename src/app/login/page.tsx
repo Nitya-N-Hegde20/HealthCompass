@@ -53,7 +53,7 @@ export default function LoginPage() {
             <form action={formAction} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" placeholder="admin@example.com" required defaultValue="admin@example.com" />
+                <Input id="email" name="email" type="email" placeholder="uday@email.com" required defaultValue="uday@email.com" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>

@@ -9,7 +9,7 @@ export default async function ProfilePage() {
   // Mock data for the admin
   const adminDetails = {
     name: session?.name || 'Admin User',
-    email: 'admin@healthcompass.com',
+    email: 'uday@email.com',
     age: 42,
     role: 'System Administrator',
     memberSince: '2023-01-15',

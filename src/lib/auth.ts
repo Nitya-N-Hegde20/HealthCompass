@@ -4,7 +4,7 @@ const SESSION_COOKIE_NAME = 'healthcompass_session';
 // In a real app, use a proper JWT library like 'jose' to sign and verify tokens.
 // For this demo, we'll use a simple, insecure value.
 const ADMIN_SESSION_VALUE = 'admin_logged_in';
-const ADMIN_USER = { id: 'admin', name: 'Admin' };
+const ADMIN_USER = { id: 'admin', name: 'Uday' };
 
 export async function setSession() {
   const cookieStore = cookies();
