@@ -11,7 +11,6 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/#features', label: 'Features' },
   { href: '/#about', label: 'About' },
-  { href: '/chat', label: 'Chat with AI' },
 ];
 
 export function Navbar() {
