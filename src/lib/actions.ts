@@ -55,19 +55,23 @@ export async function logout() {
 
 // --- Registration Action ---
 const registerSchema = z.object({
-  name: z.string().min(2, 'Name is required'),
-  mobile: z.string().min(10, 'A valid mobile number is required'),
+  fullName: z.string().min(2, 'Name is required'),
+  phone: z.string().min(10, 'A valid mobile number is required'),
   email: z.string().email('Invalid email address').optional().or(z.literal('')),
   age: z.coerce.number().min(1, 'Age is required'),
   gender: z.enum(['male', 'female', 'other'], { required_error: 'Gender is required' }),
-  location: z.string().min(2, 'Location is required'),
-  familyMembers: z.string().optional(),
+  address: z.string().min(2, 'Location is required'),
 });
 
 export async function register(prevState: any, formData: FormData) {
-  const validatedFields = registerSchema.safeParse(
-    Object.fromEntries(formData.entries())
-  );
+   const validatedFields = registerSchema.safeParse({
+    fullName: formData.get('name'),
+    phone: formData.get('mobile'),
+    email: formData.get('email'),
+    age: formData.get('age'),
+    gender: formData.get('gender'),
+    address: formData.get('location'),
+  });
 
   if (!validatedFields.success) {
     return {
@@ -76,10 +80,25 @@ export async function register(prevState: any, formData: FormData) {
     };
   }
 
-  // In a real app, you would save this data to a database.
-  console.log('New registration:', validatedFields.data);
+  const apiRegisterUrl = 'https://api.craftech.top/api/Patient/register';
 
-  return { success: 'Registration successful! You can now use our services.' };
+  try {
+    const response = await fetch(apiRegisterUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(validatedFields.data),
+    });
+
+    if (response.ok) {
+      return { success: 'Registration successful! You can now use our services.' };
+    } else {
+      const errorText = await response.text();
+      return { error: `Registration failed: ${errorText || response.statusText}` };
+    }
+  } catch (error: any) {
+    console.error('Network Error during registration:', error);
+    return { error: `Could not connect to the registration service. Details: ${error.message}` };
+  }
 }
 
 

@@ -8,7 +8,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 import { Loader2 } from 'lucide-react';
@@ -93,10 +92,6 @@ export default function RegisterPage() {
               <div className="space-y-2">
                 <Label htmlFor="location">Location*</Label>
                 <Input id="location" name="location" placeholder="City, Country" required />
-              </div>
-              <div className="md:col-span-2 space-y-2">
-                <Label htmlFor="familyMembers">Family Member Details (Optional)</Label>
-                <Textarea id="familyMembers" name="familyMembers" placeholder="e.g., Spouse, Age 40, No known conditions." />
               </div>
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
