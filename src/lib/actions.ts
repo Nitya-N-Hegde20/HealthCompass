@@ -22,10 +22,10 @@ export async function login(prevState: any, formData: FormData) {
     };
   }
   
-  const { email } = validatedFields.data;
+  const { email, password } = validatedFields.data;
 
   // Basic check for admin user. In a real app, you'd validate credentials.
-  if (email === 'admin@example.com' || email === 'admin@healthcompass.com') {
+  if (email === 'admin@example.com' && password === 'password') {
     await setSession();
     redirect('/dashboard');
   }
