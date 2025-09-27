@@ -33,22 +33,16 @@ export async function login(prevState: any, formData: FormData) {
     });
 
     if (response.ok) {
-      // The backend should return a token or session identifier.
-      // For this example, we'll continue using our simple session management.
       await setSession();
       redirect('/dashboard');
     } else {
-      // Try to read the error message from the backend.
       const errorText = await response.text();
-      // If the backend provides a JSON error, you might need to parse it:
-      // const errorJson = JSON.parse(errorText);
       console.error('Backend Login Error:', errorText);
-      return { error: errorText || 'Invalid credentials provided.' };
+      return { error: `Login failed: ${errorText || response.statusText}` };
     }
   } catch (error: any) {
-    // This block catches network errors (e.g., backend is down).
     console.error('Network Error during login:', error);
-    return { error: `Could not connect to the backend service. Please ensure it is running and accessible. Details: ${error.message}` };
+    return { error: `Could not connect to the login service. Details: ${error.message}` };
   }
 }
 
@@ -119,11 +113,11 @@ export async function getPatientCount(): Promise<{ count: number; error: string 
       return { count: patients.length, error: null };
     } else {
       const errorText = await response.text();
-      console.error('API Error:', errorText);
-      return { count: 0, error: `Failed to fetch patients: ${response.statusText}` };
+      console.error('API Error fetching patients:', errorText);
+      return { count: 0, error: `Failed to fetch patient data: ${errorText || response.statusText}` };
     }
   } catch (error: any) {
-    console.error('Network Error:', error);
-    return { count: 0, error: `Could not connect to the backend service. ${error.message}` };
+    console.error('Network Error fetching patients:', error);
+    return { count: 0, error: `Could not connect to the patient data service. Details: ${error.message}` };
   }
 }
