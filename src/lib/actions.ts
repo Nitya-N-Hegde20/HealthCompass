@@ -22,42 +22,17 @@ export async function login(prevState: any, formData: FormData) {
     };
   }
   
-  const { email, password } = validatedFields.data;
-  // This URL should point to your running ASP.NET Web API.
-  const apiLoginUrl = 'http://localhost:5054/api/Admin/login'; 
+  const { email } = validatedFields.data;
 
-  try {
-    const response = await fetch(apiLoginUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      // The backend expects properties that match the Admin model (Email, Password).
-      body: JSON.stringify({ Email: email, Password: password }),
-    });
-
-    if (response.ok) {
-      // The backend returns a success message, so we can set our session.
-      // const sessionData = await response.json(); 
-      await setSession(); // Using our simple session for now
-      redirect('/dashboard');
-    } else {
-      const errorData = await response.text();
-      return {
-        error: `Login failed: ${errorData || response.statusText}`,
-      };
-    }
-  } catch (error) {
-    console.error('API call failed:', error);
-    if (error instanceof TypeError && error.message.includes('fetch failed')) {
-      return {
-         error: 'Connection failed. Please ensure the backend is running at ' + apiLoginUrl + ' and that there are no CORS issues.',
-      };
-    }
-    return {
-      error: 'Could not connect to the login service. Please ensure the backend is running and reachable.',
-    };
+  // Basic check for admin user. In a real app, you'd validate credentials.
+  if (email === 'admin@example.com' || email === 'admin@healthcompass.com') {
+    await setSession();
+    redirect('/dashboard');
   }
+
+  return {
+    error: 'Invalid credentials.',
+  };
 }
 
 
