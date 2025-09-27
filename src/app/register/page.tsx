@@ -1,24 +1,23 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import Link from 'next/link';
 import { Loader2 } from 'lucide-react';
 import Image from 'next/image';
 
 export default function RegisterPage() {
   const { toast } = useToast();
+  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
-  const [successMessage, setSuccessMessage] = React.useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSuccessMessage(null);
 
     const formData = new FormData(e.currentTarget);
 
@@ -58,12 +57,15 @@ export default function RegisterPage() {
       if (!response.ok) {
         throw new Error(data.message || "Registration failed");
       }
-
-      setSuccessMessage(data.message);
+      
       toast({
         title: "Success!",
         description: data.message,
       });
+
+      // Redirect to chat page on success
+      router.push('/chat');
+
     } catch (err: any) {
        let errorMessage = err.message;
        if (err instanceof TypeError && err.message === 'Failed to fetch') {
@@ -75,6 +77,7 @@ export default function RegisterPage() {
         description: errorMessage,
       });
     } finally {
+      // In case of success, the user is redirected, but we still want to reset the button state on failure.
       setIsSubmitting(false);
     }
   };
@@ -134,18 +137,9 @@ export default function RegisterPage() {
               </div>
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
-              {successMessage ? (
-                <div className="text-center p-4 bg-green-100 text-green-800 rounded-md w-full">
-                  <p>{successMessage}</p>
-                  <Button asChild variant="link">
-                    <Link href="/chat">Proceed to Symptom Analysis</Link>
-                  </Button>
-                </div>
-              ) : (
-                <Button type="submit" className="w-full" disabled={isSubmitting}>
-                  {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Registering...</> : 'Register'}
-                </Button>
-              )}
+              <Button type="submit" className="w-full" disabled={isSubmitting}>
+                {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Registering...</> : 'Register'}
+              </Button>
             </CardFooter>
           </form>
         </Card>
