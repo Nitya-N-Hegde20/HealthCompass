@@ -7,7 +7,7 @@ import { analyzeSymptoms } from '@/ai/flows/ai-symptom-analysis';
 
 // --- Login Action ---
 const loginSchema = z.object({
-  username: z.string().min(1, 'Username is required'),
+  email: z.string().email('A valid email is required'),
   password: z.string().min(1, 'Password is required'),
 });
 
@@ -18,12 +18,13 @@ export async function login(prevState: any, formData: FormData) {
 
   if (!validatedFields.success) {
     return {
-      error: 'Invalid fields.',
+      error: 'Invalid fields. Please provide a valid email and password.',
     };
   }
   
-  const { username, password } = validatedFields.data;
-  const apiLoginUrl = 'https://localhost:7203/swagger/index.html'; // IMPORTANT: Replace with your actual API endpoint
+  const { email, password } = validatedFields.data;
+  // IMPORTANT: Replace with your actual API endpoint if it's different.
+  const apiLoginUrl = 'http://localhost:7203/api/Admin/login'; 
 
   try {
     const response = await fetch(apiLoginUrl, {
@@ -31,16 +32,17 @@ export async function login(prevState: any, formData: FormData) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ username, password }),
+      // The backend expects an object with Email and Password properties.
+      // C# is case-insensitive for property binding by default, but it's good practice to match.
+      body: JSON.stringify({ Email: email, Password: password }),
     });
 
     if (response.ok) {
-      // Assuming the API returns some session data or token upon successful login
+      // The API returns { message, adminId, email }. We can use this data if needed.
       // const sessionData = await response.json(); 
       await setSession(); // Using our simple session for now
       redirect('/dashboard');
     } else {
-      // Handle different error stati from the API if needed
       const errorData = await response.text();
       return {
         error: `Login failed: ${errorData || response.statusText}`,
@@ -49,7 +51,7 @@ export async function login(prevState: any, formData: FormData) {
   } catch (error) {
     console.error('API call failed:', error);
     return {
-      error: 'Could not connect to the login service. Please ensure the backend is running.',
+      error: 'Could not connect to the login service. Please ensure the backend is running and reachable.',
     };
   }
 }
