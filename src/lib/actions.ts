@@ -105,8 +105,8 @@ export async function getPatientCount() {
       console.error('API Error:', errorText);
       return { count: 0, error: `Failed to fetch patients: ${response.statusText}` };
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error('Network Error:', error);
-    return { count: 0, error: 'Could not connect to the backend service.' };
+    return { count: 0, error: `Could not connect to the backend service. ${error.message}` };
   }
 }
