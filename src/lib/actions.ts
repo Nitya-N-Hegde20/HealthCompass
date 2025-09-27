@@ -25,17 +25,15 @@ export async function login(prevState: any, formData: FormData) {
   const { email, password } = validatedFields.data;
   const apiLoginUrl = 'https://api.craftech.top/api/Admin/login';
 
+  let response;
   try {
-    const response = await fetch(apiLoginUrl, {
+    response = await fetch(apiLoginUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ Email: email, Password: password }),
     });
 
-    if (response.ok) {
-      await setSession();
-      redirect('/dashboard');
-    } else {
+    if (!response.ok) {
       const errorText = await response.text();
       console.error('Backend Login Error:', errorText);
       return { error: `Login failed: ${errorText || response.statusText}` };
@@ -44,6 +42,10 @@ export async function login(prevState: any, formData: FormData) {
     console.error('Network Error during login:', error);
     return { error: `Could not connect to the login service. Details: ${error.message}` };
   }
+
+  // Redirect must be called outside of the try/catch block
+  await setSession();
+  redirect('/dashboard');
 }
 
 
