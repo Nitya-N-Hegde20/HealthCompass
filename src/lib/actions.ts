@@ -22,36 +22,14 @@ export async function login(prevState: any, formData: FormData) {
     };
   }
   
-  const { username, password } = validatedFields.data;
-  
-  // URL for your ASP.NET Web API login endpoint.
-  // **IMPORTANT: You must replace this with your actual API URL.**
-  const apiLoginUrl = 'https://your-aspnet-api.com/api/auth/login';
+  const { username } = validatedFields.data;
 
-  try {
-    const response = await fetch(apiLoginUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password }),
-    });
-
-    if (response.ok) {
-      // Assuming the API returns a success status on correct login.
-      // You might also handle tokens here if your API returns them.
-      await setSession();
-    } else {
-      // Handle login failure (e.g., 401 Unauthorized)
-      const errorData = await response.json().catch(() => ({ message: 'Invalid username or password.' }));
-      return {
-        error: errorData.message || 'Invalid username or password.',
-      };
-    }
-  } catch (error) {
-    console.error('API call failed:', error);
+  // Simple check for demo purposes
+  if (username === 'admin') {
+    await setSession();
+  } else {
     return {
-      error: 'Could not connect to the login service. Please try again later.',
+      error: 'Invalid username or password.',
     };
   }
   
