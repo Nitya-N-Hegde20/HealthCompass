@@ -32,7 +32,7 @@ export default async function DashboardPage() {
           </CardHeader>
           <CardContent>
             <p className="text-4xl font-bold">{totalRegistrations}</p>
-            <p className="text-sm text-muted-foreground">{patientDataError ? 'Could not fetch data' : 'From backend'}</p>
+            {patientDataError && <p className="text-sm text-muted-foreground">Could not fetch data</p>}
           </CardContent>
         </Card>
         <Card>
@@ -58,16 +58,7 @@ export default async function DashboardPage() {
       </div>
 
       <div className="grid gap-8 lg:grid-cols-3">
-        <Card className="lg:col-span-2">
-          <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
-            <CardDescription>A log of recent user activities and AI interactions.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="text-muted-foreground">Recent activity will be shown here.</p>
-          </CardContent>
-        </Card>
-        <Card>
+        <Card className="lg:col-span-3">
           <CardHeader>
             <CardTitle>Patient Inquiries by Specialist</CardTitle>
           </CardHeader>
