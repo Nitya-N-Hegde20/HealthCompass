@@ -3,7 +3,6 @@
 import { z } from 'zod';
 import { redirect } from 'next/navigation';
 import { setSession, deleteSession } from '@/lib/auth';
-import { analyzeSymptoms } from '@/ai/flows/ai-symptom-analysis';
 
 // --- Login Action ---
 const loginSchema = z.object({
@@ -53,20 +52,6 @@ export async function login(prevState: any, formData: FormData) {
 export async function logout() {
   await deleteSession();
   redirect('/');
-}
-
-// --- Chat Action ---
-export async function getSymptomAnalysis(symptoms: string) {
-  try {
-    const result = await analyzeSymptoms({
-      symptoms,
-      problemDescription: "A user is looking for a medical specialist based on their symptoms."
-    });
-    return { success: true, data: result };
-  } catch (error) {
-    console.error(error);
-    return { success: false, error: 'Failed to get analysis. Please try again.' };
-  }
 }
 
 // --- Dashboard Actions ---
