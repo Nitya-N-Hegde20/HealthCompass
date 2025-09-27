@@ -56,12 +56,12 @@ export async function logout() {
 // --- Registration Action ---
 export async function register(prevState: any, formData: FormData) {
   const patientData = {
-    FullName: formData.get('name'),
-    Phone: formData.get('mobile'),
-    Email: formData.get('email') || '', // Ensure email is a string
+    FullName: formData.get('name') as string,
+    Phone: (formData.get('mobile') as string || '').replace(/\D/g, ''), // Sanitize phone number
+    Email: formData.get('email') as string || '', // Ensure email is a string
     Age: Number(formData.get('age')),
-    Gender: formData.get('gender'),
-    Address: formData.get('location'),
+    Gender: formData.get('gender') as string,
+    Address: formData.get('location') as string,
   };
 
   // Basic validation to ensure required fields are present
