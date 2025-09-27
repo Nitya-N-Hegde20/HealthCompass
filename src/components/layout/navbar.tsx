@@ -58,6 +58,7 @@ export function Navbar() {
               <Button variant="ghost" asChild>
                 <Link href="/login">Admin Login</Link>
               </Button>
+              <Button variant="outline">Sync with Fitbit</Button>
               <Button asChild>
                 <Link href="/register">Get Started</Link>
               </Button>
@@ -95,6 +96,15 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
+             <div className="flex w-full flex-col gap-2 pt-4 border-t">
+              <Button variant="outline">Sync with Fitbit</Button>
+              <Button asChild>
+                <Link href="/register">Get Started</Link>
+              </Button>
+              <Button variant="ghost" asChild>
+                <Link href="/login">Admin Login</Link>
+              </Button>
+            </div>
           </div>
         </div>
       )}
