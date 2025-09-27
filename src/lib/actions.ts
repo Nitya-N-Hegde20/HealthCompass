@@ -23,7 +23,7 @@ export async function login(prevState: any, formData: FormData) {
   }
   
   const { email, password } = validatedFields.data;
-  // IMPORTANT: Replace with your actual API endpoint if it's different.
+  // This URL should point to your running ASP.NET Web API.
   const apiLoginUrl = 'http://localhost:7203/api/Admin/login'; 
 
   try {
@@ -32,13 +32,12 @@ export async function login(prevState: any, formData: FormData) {
       headers: {
         'Content-Type': 'application/json',
       },
-      // The backend expects an object with Email and Password properties.
-      // C# is case-insensitive for property binding by default, but it's good practice to match.
+      // The backend expects properties that match the Admin model (Email, Password).
       body: JSON.stringify({ Email: email, Password: password }),
     });
 
     if (response.ok) {
-      // The API returns { message, adminId, email }. We can use this data if needed.
+      // The backend returns a success message, so we can set our session.
       // const sessionData = await response.json(); 
       await setSession(); // Using our simple session for now
       redirect('/dashboard');
