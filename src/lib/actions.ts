@@ -85,3 +85,28 @@ export async function getSymptomAnalysis(symptoms: string) {
     return { success: false, error: 'Failed to get analysis. Please try again.' };
   }
 }
+
+// --- Dashboard Actions ---
+export async function getPatientCount() {
+  const apiPatientsUrl = 'http://localhost:5054/api/Admin/patients';
+
+  try {
+    const response = await fetch(apiPatientsUrl, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      cache: 'no-store', // Ensure we always get fresh data
+    });
+
+    if (response.ok) {
+      const patients = await response.json();
+      return { count: patients.length, error: null };
+    } else {
+      const errorText = await response.text();
+      console.error('API Error:', errorText);
+      return { count: 0, error: `Failed to fetch patients: ${response.statusText}` };
+    }
+  } catch (error) {
+    console.error('Network Error:', error);
+    return { count: 0, error: 'Could not connect to the backend service.' };
+  }
+}

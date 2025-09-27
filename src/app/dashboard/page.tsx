@@ -1,14 +1,29 @@
 import { getSession } from '@/lib/auth';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { PatientChart } from '@/components/dashboard/patient-chart';
+import { getPatientCount } from '@/lib/actions';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { AlertCircle } from 'lucide-react';
 
 export default async function DashboardPage() {
   const session = await getSession();
+  const { count: totalRegistrations, error: patientCountError } = await getPatientCount();
 
   return (
     <div className="space-y-8">
       <h1 className="text-3xl font-bold">Welcome, {session?.name ?? 'Admin'}!</h1>
       
+      {patientCountError && (
+        <Alert variant="destructive">
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>Connection Error</AlertTitle>
+          <AlertDescription>
+            Could not connect to the backend to fetch patient data. Please ensure the backend service is running.
+            <p className="font-mono text-xs mt-2">{patientCountError}</p>
+          </AlertDescription>
+        </Alert>
+      )}
+
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <Card>
           <CardHeader>
@@ -16,8 +31,8 @@ export default async function DashboardPage() {
             <CardDescription>All-time user sign-ups</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-4xl font-bold">1,234</p>
-            <p className="text-sm text-muted-foreground">+5.2% from last month</p>
+            <p className="text-4xl font-bold">{totalRegistrations}</p>
+            <p className="text-sm text-muted-foreground">{patientCountError ? 'Could not fetch data' : 'From backend'}</p>
           </CardContent>
         </Card>
         <Card>
