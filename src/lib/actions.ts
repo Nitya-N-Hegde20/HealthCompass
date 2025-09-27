@@ -23,16 +23,26 @@ export async function login(prevState: any, formData: FormData) {
   }
   
   const { email, password } = validatedFields.data;
+  const apiLoginUrl = 'https://api.craftech.top/api/Admin/login';
 
-  // Basic check for admin user. In a real app, you'd validate credentials.
-  if (email === 'admin@example.com' && password === 'password') {
-    await setSession();
-    redirect('/dashboard');
+  try {
+    const response = await fetch(apiLoginUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ Email: email, Password: password }),
+    });
+
+    if (response.ok) {
+      await setSession();
+      redirect('/dashboard');
+    } else {
+      const errorText = await response.text();
+      return { error: errorText || 'Invalid credentials.' };
+    }
+  } catch (error: any) {
+    console.error('Network Error:', error);
+    return { error: `Could not connect to the backend service. ${error.message}` };
   }
-
-  return {
-    error: 'Invalid credentials.',
-  };
 }
 
 
