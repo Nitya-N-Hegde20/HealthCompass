@@ -22,15 +22,27 @@ export default function RegisterPage() {
 
     const formData = new FormData(e.currentTarget);
 
-    // Map frontend fields to backend model
-    const payload = {
+    // Base payload with required fields
+    const payload: {
+      FullName: FormDataEntryValue | null;
+      Age: number;
+      Gender: FormDataEntryValue | null;
+      Phone: FormDataEntryValue | null;
+      Address: FormDataEntryValue | null;
+      Email?: FormDataEntryValue | null;
+    } = {
       FullName: formData.get("name"),
       Age: Number(formData.get("age")),
       Gender: formData.get("gender"),
       Phone: formData.get("mobile"),
-      Email: formData.get("email"),
       Address: formData.get("location"),
     };
+    
+    // Conditionally add email if it exists
+    const email = formData.get("email");
+    if (email) {
+      payload.Email = email;
+    }
 
     try {
       const response = await fetch("https://api.craftech.top/api/Patient/register", {
