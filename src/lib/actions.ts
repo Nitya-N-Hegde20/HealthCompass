@@ -88,7 +88,7 @@ export async function getSymptomAnalysis(symptoms: string) {
 
 // --- Dashboard Actions ---
 export async function getPatientCount(): Promise<{ count: number; error: string | null; }> {
-  const apiPatientsUrl = 'http://localhost:5054/api/Admin/patients';
+  const apiPatientsUrl = 'https://api.craftech.top/api/Admin/patients';
 
   try {
     const response = await fetch(apiPatientsUrl, {
