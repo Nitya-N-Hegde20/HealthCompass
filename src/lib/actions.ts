@@ -55,22 +55,22 @@ export async function logout() {
 
 // --- Registration Action ---
 const registerSchema = z.object({
-  fullName: z.string().min(2, 'Name is required'),
-  phone: z.string().min(10, 'A valid mobile number is required'),
-  email: z.string().email('Invalid email address').optional().or(z.literal('')),
-  age: z.coerce.number().min(1, 'Age is required'),
-  gender: z.enum(['male', 'female', 'other'], { required_error: 'Gender is required' }),
-  address: z.string().min(2, 'Location is required'),
+  FullName: z.string().min(2, 'Name is required'),
+  Phone: z.string().min(10, 'A valid mobile number is required'),
+  Email: z.string().email('Invalid email address').optional().or(z.literal('')),
+  Age: z.coerce.number().min(1, 'Age is required'),
+  Gender: z.enum(['male', 'female', 'other'], { required_error: 'Gender is required' }),
+  Address: z.string().min(2, 'Location is required'),
 });
 
 export async function register(prevState: any, formData: FormData) {
    const validatedFields = registerSchema.safeParse({
-    fullName: formData.get('name'),
-    phone: formData.get('mobile'),
-    email: formData.get('email'),
-    age: formData.get('age'),
-    gender: formData.get('gender'),
-    address: formData.get('location'),
+    FullName: formData.get('name'),
+    Phone: formData.get('mobile'),
+    Email: formData.get('email'),
+    Age: formData.get('age'),
+    Gender: formData.get('gender'),
+    Address: formData.get('location'),
   });
 
   if (!validatedFields.success) {
