@@ -1,14 +1,13 @@
 import { getSession } from '@/lib/auth';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { PatientChart } from '@/components/dashboard/patient-chart';
-import { getPatients } from '@/lib/actions';
+import { getPatientCount } from '@/lib/actions';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertCircle } from 'lucide-react';
-import { PatientTable } from '@/components/dashboard/patient-table';
 
 export default async function DashboardPage() {
   const session = await getSession();
-  const { patients, count: totalRegistrations, error: patientDataError } = await getPatients();
+  const { count: totalRegistrations, error: patientDataError } = await getPatientCount();
 
   return (
     <div className="space-y-8">
@@ -61,11 +60,11 @@ export default async function DashboardPage() {
       <div className="grid gap-8 lg:grid-cols-3">
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>Registered Patients</CardTitle>
-            <CardDescription>A list of all users who have registered.</CardDescription>
+            <CardTitle>Recent Activity</CardTitle>
+            <CardDescription>A log of recent user activities and AI interactions.</CardDescription>
           </CardHeader>
           <CardContent>
-            <PatientTable patients={patients} />
+            <p className="text-muted-foreground">Recent activity will be shown here.</p>
           </CardContent>
         </Card>
         <Card>

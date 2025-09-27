@@ -87,18 +87,7 @@ export async function getSymptomAnalysis(symptoms: string) {
 }
 
 // --- Dashboard Actions ---
-export type Patient = {
-  patientID: number;
-  fullName: string;
-  age: number;
-  gender: string;
-  phone: string;
-  email: string;
-  address: string;
-  createdAt: string;
-};
-
-export async function getPatients(): Promise<{ patients: Patient[]; count: number; error: string | null; }> {
+export async function getPatientCount(): Promise<{ count: number; error: string | null; }> {
   const apiPatientsUrl = 'http://localhost:5054/api/Admin/patients';
 
   try {
@@ -110,14 +99,14 @@ export async function getPatients(): Promise<{ patients: Patient[]; count: numbe
 
     if (response.ok) {
       const patients = await response.json();
-      return { patients, count: patients.length, error: null };
+      return { count: patients.length, error: null };
     } else {
       const errorText = await response.text();
       console.error('API Error:', errorText);
-      return { patients: [], count: 0, error: `Failed to fetch patients: ${response.statusText}` };
+      return { count: 0, error: `Failed to fetch patients: ${response.statusText}` };
     }
   } catch (error: any) {
     console.error('Network Error:', error);
-    return { patients: [], count: 0, error: `Could not connect to the backend service. ${error.message}` };
+    return { count: 0, error: `Could not connect to the backend service. ${error.message}` };
   }
 }
