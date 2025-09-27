@@ -49,6 +49,11 @@ export async function login(prevState: any, formData: FormData) {
     }
   } catch (error) {
     console.error('API call failed:', error);
+    if (error instanceof TypeError && error.message.includes('fetch failed')) {
+      return {
+         error: 'Connection failed. Please ensure the backend is running at ' + apiLoginUrl + ' and that there are no CORS issues.',
+      };
+    }
     return {
       error: 'Could not connect to the login service. Please ensure the backend is running and reachable.',
     };
