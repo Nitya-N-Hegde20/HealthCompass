@@ -1,49 +1,71 @@
 'use client';
 
-import { useActionState, useEffect } from 'react';
-import { useFormStatus } from 'react-dom';
-import { register } from '@/lib/actions';
+import React, { useEffect } from 'react';
+import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 import { Loader2 } from 'lucide-react';
 import Image from 'next/image';
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" className="w-full" disabled={pending}>
-      {pending ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Registering...</> : 'Register'}
-    </Button>
-  );
-}
-
 export default function RegisterPage() {
-  const [state, formAction] = useActionState(register, undefined);
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [successMessage, setSuccessMessage] = React.useState<string | null>(null);
 
-  useEffect(() => {
-    if (state?.error) {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSuccessMessage(null);
+
+    const formData = new FormData(e.currentTarget);
+
+    // Map frontend fields to backend model
+    const payload = {
+      FullName: formData.get("name"),
+      Age: Number(formData.get("age")),
+      Gender: formData.get("gender"),
+      Phone: formData.get("mobile"),
+      Email: formData.get("email"),
+      Address: formData.get("location"),
+    };
+
+    try {
+      const response = await fetch("https://api.craftech.top/api/Patient/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Registration failed");
+      }
+
+      setSuccessMessage(data.message);
+      toast({
+        title: "Success!",
+        description: data.message,
+      });
+    } catch (err: any) {
       toast({
         variant: "destructive",
         title: "Registration Failed",
-        description: state.error,
+        description: err.message,
       });
+    } finally {
+      setIsSubmitting(false);
     }
-    if (state?.success) {
-      toast({
-        title: "Success!",
-        description: state.success,
-      });
-    }
-  }, [state, toast]);
+  };
 
   return (
     <div className="relative flex items-center justify-center min-h-[calc(100vh-4rem)] py-12 px-4">
-       <Image
+      <Image
         src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop"
         alt="Doctor using a tablet in a modern medical setting"
         fill
@@ -57,7 +79,7 @@ export default function RegisterPage() {
             <CardTitle className="text-3xl">Get Started</CardTitle>
             <CardDescription>Create your HealthCompass account to get personalized help.</CardDescription>
           </CardHeader>
-          <form action={formAction}>
+          <form onSubmit={handleSubmit}>
             <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="name">Full Name*</Label>
@@ -81,6 +103,7 @@ export default function RegisterPage() {
                   id="gender"
                   name="gender"
                   required
+                  defaultValue=""
                   className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <option value="" disabled>Select gender</option>
@@ -95,15 +118,17 @@ export default function RegisterPage() {
               </div>
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
-               {state?.success ? (
+              {successMessage ? (
                 <div className="text-center p-4 bg-green-100 text-green-800 rounded-md w-full">
-                  <p>{state.success}</p>
+                  <p>{successMessage}</p>
                   <Button asChild variant="link">
                     <Link href="/chat">Proceed to Symptom Analysis</Link>
                   </Button>
                 </div>
               ) : (
-                <SubmitButton />
+                <Button type="submit" className="w-full" disabled={isSubmitting}>
+                  {isSubmitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Registering...</> : 'Register'}
+                </Button>
               )}
             </CardFooter>
           </form>

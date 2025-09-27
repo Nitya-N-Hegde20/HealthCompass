@@ -53,46 +53,6 @@ export async function logout() {
   redirect('/');
 }
 
-// --- Registration Action ---
-export async function register(prevState: any, formData: FormData) {
-  const patientData = {
-    FullName: formData.get('name') as string,
-    Phone: (formData.get('mobile') as string || '').replace(/\D/g, ''), // Sanitize phone number
-    Email: formData.get('email') as string || '', // Ensure email is a string
-    Age: Number(formData.get('age')),
-    Gender: formData.get('gender') as string,
-    Address: formData.get('location') as string,
-  };
-
-  // Basic validation to ensure required fields are present
-  if (!patientData.FullName || !patientData.Phone || !patientData.Age || !patientData.Gender || !patientData.Address) {
-    return {
-      error: 'Invalid data provided. Please fill all required fields.',
-    };
-  }
-
-  const apiRegisterUrl = 'https://api.craftech.top/api/Patient/register';
-
-  try {
-    const response = await fetch(apiRegisterUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(patientData),
-    });
-
-    if (response.ok) {
-      return { success: 'Registration successful! You can now use our services.' };
-    } else {
-      const errorText = await response.text();
-      return { error: `Registration failed: ${errorText || response.statusText}` };
-    }
-  } catch (error: any) {
-    console.error('Network Error during registration:', error);
-    return { error: `Could not connect to the registration service. Details: ${error.message}` };
-  }
-}
-
-
 // --- Chat Action ---
 export async function getSymptomAnalysis(symptoms: string) {
   try {
