@@ -54,29 +54,20 @@ export async function logout() {
 }
 
 // --- Registration Action ---
-const registerSchema = z.object({
-  FullName: z.string().min(2, 'Name is required'),
-  Phone: z.string().min(10, 'A valid mobile number is required'),
-  Email: z.string().email('Invalid email address').optional().or(z.literal('')),
-  Age: z.coerce.number().min(1, 'Age is required'),
-  Gender: z.enum(['male', 'female', 'other'], { required_error: 'Gender is required' }),
-  Address: z.string().min(2, 'Location is required'),
-});
-
 export async function register(prevState: any, formData: FormData) {
-   const validatedFields = registerSchema.safeParse({
+  const patientData = {
     FullName: formData.get('name'),
     Phone: formData.get('mobile'),
     Email: formData.get('email'),
-    Age: formData.get('age'),
+    Age: Number(formData.get('age')),
     Gender: formData.get('gender'),
     Address: formData.get('location'),
-  });
+  };
 
-  if (!validatedFields.success) {
+  // Basic validation to ensure required fields are present
+  if (!patientData.FullName || !patientData.Phone || !patientData.Age || !patientData.Gender || !patientData.Address) {
     return {
-      error: 'Invalid data provided. Please check the fields.',
-      fieldErrors: validatedFields.error.flatten().fieldErrors,
+      error: 'Invalid data provided. Please fill all required fields.',
     };
   }
 
@@ -86,7 +77,7 @@ export async function register(prevState: any, formData: FormData) {
     const response = await fetch(apiRegisterUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(validatedFields.data),
+      body: JSON.stringify(patientData),
     });
 
     if (response.ok) {
