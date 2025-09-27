@@ -22,19 +22,38 @@ export async function login(prevState: any, formData: FormData) {
     };
   }
   
-  const { username } = validatedFields.data;
+  const { username, password } = validatedFields.data;
+  const apiLoginUrl = 'https://localhost:7203/swagger/index.html'; // IMPORTANT: Replace with your actual API endpoint
 
-  // Simple check for demo purposes
-  if (username === 'admin') {
-    await setSession();
-  } else {
+  try {
+    const response = await fetch(apiLoginUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+    if (response.ok) {
+      // Assuming the API returns some session data or token upon successful login
+      // const sessionData = await response.json(); 
+      await setSession(); // Using our simple session for now
+      redirect('/dashboard');
+    } else {
+      // Handle different error stati from the API if needed
+      const errorData = await response.text();
+      return {
+        error: `Login failed: ${errorData || response.statusText}`,
+      };
+    }
+  } catch (error) {
+    console.error('API call failed:', error);
     return {
-      error: 'Invalid username or password.',
+      error: 'Could not connect to the login service. Please ensure the backend is running.',
     };
   }
-  
-  redirect('/dashboard');
 }
+
 
 // --- Logout Action ---
 export async function logout() {
