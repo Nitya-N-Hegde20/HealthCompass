@@ -53,10 +53,14 @@ export default function RegisterPage() {
         description: data.message,
       });
     } catch (err: any) {
+       let errorMessage = err.message;
+       if (err instanceof TypeError && err.message === 'Failed to fetch') {
+         errorMessage = 'Could not connect to the server. This may be a CORS issue. Please ensure the backend allows requests from this origin.';
+       }
       toast({
         variant: "destructive",
         title: "Registration Failed",
-        description: err.message,
+        description: errorMessage,
       });
     } finally {
       setIsSubmitting(false);
