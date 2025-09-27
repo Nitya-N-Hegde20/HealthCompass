@@ -24,7 +24,7 @@ export async function login(prevState: any, formData: FormData) {
   
   const { email, password } = validatedFields.data;
   // This URL should point to your running ASP.NET Web API.
-  const apiLoginUrl = 'http://localhost:7203/api/Admin/login'; 
+  const apiLoginUrl = 'http://localhost:5054/api/Admin/login'; 
 
   try {
     const response = await fetch(apiLoginUrl, {
