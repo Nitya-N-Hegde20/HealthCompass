@@ -1,5 +1,1 @@
-# Firebase Studio
-
-This is a NextJS starter in Firebase Studio.
-
-To get started, take a look at src/app/page.tsx.
+In today’s healthcare landscape, individuals experiencing sudden or unfamiliar health symptoms often face uncertainty about which medical specialist to consult. For example, a person with chest pain may not know whether to visit a general physician, a cardiologist, or another specialist. This lack of clarity delays timely medical consultation, increases patient anxiety, and may even worsen health outcomes. Additionally, once the relevant specialty is identified, patients struggle to find reliable doctors near their location. The overwhelming number of options on online platforms, varying ratings, and lack of immediate guidance make it difficult for patients to make quick, informed decisions. This gap highlights the need for a conversational, accessible, and location-aware solution that can guide individuals from describing their symptoms to identifying the right specialist, and finally, to discovering trustworthy doctors nearby—all through a simple phone call without requiring apps or technical know-how.
