@@ -33,15 +33,22 @@ export async function login(prevState: any, formData: FormData) {
     });
 
     if (response.ok) {
+      // The backend should return a token or session identifier.
+      // For this example, we'll continue using our simple session management.
       await setSession();
       redirect('/dashboard');
     } else {
+      // Try to read the error message from the backend.
       const errorText = await response.text();
-      return { error: errorText || 'Invalid credentials.' };
+      // If the backend provides a JSON error, you might need to parse it:
+      // const errorJson = JSON.parse(errorText);
+      console.error('Backend Login Error:', errorText);
+      return { error: errorText || 'Invalid credentials provided.' };
     }
   } catch (error: any) {
-    console.error('Network Error:', error);
-    return { error: `Could not connect to the backend service. ${error.message}` };
+    // This block catches network errors (e.g., backend is down).
+    console.error('Network Error during login:', error);
+    return { error: `Could not connect to the backend service. Please ensure it is running and accessible. Details: ${error.message}` };
   }
 }
 
