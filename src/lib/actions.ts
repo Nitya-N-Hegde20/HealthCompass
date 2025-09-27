@@ -55,12 +55,10 @@ export async function logout() {
 
 // --- Registration Action ---
 export async function register(prevState: any, formData: FormData) {
-  const email = formData.get('email');
-  
   const patientData = {
     FullName: formData.get('name'),
     Phone: formData.get('mobile'),
-    Email: email || null,
+    Email: formData.get('email') || '', // Ensure email is a string
     Age: Number(formData.get('age')),
     Gender: formData.get('gender'),
     Address: formData.get('location'),
