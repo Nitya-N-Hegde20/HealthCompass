@@ -1,25 +1,26 @@
 import { getSession } from '@/lib/auth';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { PatientChart } from '@/components/dashboard/patient-chart';
-import { getPatientCount } from '@/lib/actions';
+import { getPatients } from '@/lib/actions';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertCircle } from 'lucide-react';
+import { PatientTable } from '@/components/dashboard/patient-table';
 
 export default async function DashboardPage() {
   const session = await getSession();
-  const { count: totalRegistrations, error: patientCountError } = await getPatientCount();
+  const { patients, count: totalRegistrations, error: patientDataError } = await getPatients();
 
   return (
     <div className="space-y-8">
       <h1 className="text-3xl font-bold">Welcome, {session?.name ?? 'Admin'}!</h1>
       
-      {patientCountError && (
+      {patientDataError && (
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>Connection Error</AlertTitle>
           <AlertDescription>
             Could not connect to the backend to fetch patient data. Please ensure the backend service is running.
-            <p className="font-mono text-xs mt-2">{patientCountError}</p>
+            <p className="font-mono text-xs mt-2">{patientDataError}</p>
           </AlertDescription>
         </Alert>
       )}
@@ -32,7 +33,7 @@ export default async function DashboardPage() {
           </CardHeader>
           <CardContent>
             <p className="text-4xl font-bold">{totalRegistrations}</p>
-            <p className="text-sm text-muted-foreground">{patientCountError ? 'Could not fetch data' : 'From backend'}</p>
+            <p className="text-sm text-muted-foreground">{patientDataError ? 'Could not fetch data' : 'From backend'}</p>
           </CardContent>
         </Card>
         <Card>
@@ -57,14 +58,25 @@ export default async function DashboardPage() {
         </Card>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Patient Inquiries by Specialist</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <PatientChart />
-        </CardContent>
-      </Card>
+      <div className="grid gap-8 lg:grid-cols-3">
+        <Card className="lg:col-span-2">
+          <CardHeader>
+            <CardTitle>Registered Patients</CardTitle>
+            <CardDescription>A list of all users who have registered.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <PatientTable patients={patients} />
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Patient Inquiries by Specialist</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <PatientChart />
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
